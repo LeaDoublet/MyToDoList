@@ -20,15 +20,15 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="184dp"
-        android:layout_height="137dp"
-        android:layout_marginTop="56dp"
+        android:layout_width="218dp"
+        android:layout_height="157dp"
+        android:layout_marginTop="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.554"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageButton2"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.078"
         app:srcCompat="@drawable/pellotelechat" />
 
     <ImageButton
@@ -45,20 +45,21 @@
 
     <ImageButton
         android:id="@+id/imageButton2"
-        android:layout_width="297dp"
-        android:layout_height="193dp"
+        android:layout_width="336dp"
+        android:layout_height="87dp"
         android:layout_marginTop="36dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.62"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/afaire_enretard_realiser" />
+        app:layout_constraintVertical_bias="0.107"
+        app:srcCompat="@drawable/blanktodo1" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="65dp"
-        android:layout_height="21dp"
+        android:layout_width="95dp"
+        android:layout_height="28dp"
         android:text="Pelotte"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,4 +67,44 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
         app:layout_constraintVertical_bias="0.053" />
 
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="77dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginBottom="94dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton"
+        app:layout_constraintHorizontal_bias="0.736"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/dressing" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="47dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="22dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton2"
+        app:srcCompat="@drawable/blanktodo2" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="458dp"
+        android:layout_height="86dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageButton2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:srcCompat="@drawable/blanktodo3" />
+    
 </androidx.constraintlayout.widget.ConstraintLayout>

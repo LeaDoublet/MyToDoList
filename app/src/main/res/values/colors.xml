@@ -7,4 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="tache1">#d6b5a7</color>
+    <color name="tache2">#e5c7bb</color>
+    <color name="tache3">#fcd8ca</color>
 </resources>

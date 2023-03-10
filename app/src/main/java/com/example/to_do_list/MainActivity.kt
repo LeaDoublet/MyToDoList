@@ -1,5 +1,6 @@
 package com.example.to_do_list
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
@@ -10,7 +11,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         var addTaskBtn = findViewById<ImageButton>(R.id.imageButton)
         addTaskBtn.setOnClickListener {
-            setContentView(R.layout.activity_add_task)
+            val intent = Intent(this@MainActivity, AddTaskActivity::class.java)
+            startActivity(intent)
         }
         var changeClothesBtn = findViewById<ImageButton>(R.id.imageButton3)
         /*addTaskBtn.setOnClickListener{

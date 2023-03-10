@@ -9,6 +9,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         var addTaskBtn = findViewById<ImageButton>(R.id.imageButton)
+        addTaskBtn.setOnClickListener {
+            setContentView(R.layout.activity_add_task)
+        }
         var changeClothesBtn = findViewById<ImageButton>(R.id.imageButton3)
         addTaskBtn.setOnClickListener{
             setContentView(R.layout.activity_add_task)

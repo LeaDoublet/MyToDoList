@@ -15,11 +15,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         var changeClothesBtn = findViewById<ImageButton>(R.id.imageButton3)
-        /*addTaskBtn.setOnClickListener{
-            setContentView(R.layout.activity_add_task)
-        }*/
         changeClothesBtn.setOnClickListener {
-            setContentView(R.layout.activity_change_clothe)
+            val intent = Intent(this@MainActivity, ChangeClothesActivity::class.java)
+            startActivity(intent)
         }
     }
 }

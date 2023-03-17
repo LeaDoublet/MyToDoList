@@ -5,39 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/addtaskbacground"
-    tools:context=".AddTaskActivity">
+    tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/btnSavTask"
-        android:layout_width="211dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="572dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="113dp"
-        android:background="#DD94EA"
-        android:text="@string/enregistrer"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="saveRecord"
+        android:text="Save"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="150dp"
+        tools:layout_editor_absoluteY="545dp" />
 
     <EditText
-        android:id="@+id/et1"
+        android:id="@+id/titreNewtask"
         android:layout_width="259dp"
         android:layout_height="53dp"
         android:layout_marginStart="62dp"
         android:layout_marginTop="196dp"
         android:layout_marginEnd="75dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/et2"
+        app:layout_constraintBottom_toTopOf="@+id/descriptionNewTask"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/et2"
+        android:id="@+id/descriptionNewTask"
         android:layout_width="249dp"
         android:layout_height="73dp"
         android:layout_marginStart="68dp"
@@ -48,7 +43,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et1" />
+        app:layout_constraintTop_toBottomOf="@+id/titreNewtask" />
 
     <Switch
         android:id="@+id/switch1"
@@ -57,10 +52,10 @@
         android:layout_marginStart="163dp"
         android:layout_marginEnd="202dp"
         android:layout_marginBottom="64dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnSavTask"
+        app:layout_constraintBottom_toTopOf="@+id/btnSave"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et2" />
+        app:layout_constraintTop_toBottomOf="@+id/descriptionNewTask" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

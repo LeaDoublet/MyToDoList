@@ -12,16 +12,17 @@
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
 
     <TextView
-        android:id="@+id/textViewName"
+        android:id="@+id/textViewTitre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Name"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
 
     <TextView
-        android:id="@+id/textViewEmail"
+        android:id="@+id/textViewDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Email"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
 </LinearLayout>

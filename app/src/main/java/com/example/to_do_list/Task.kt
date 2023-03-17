@@ -1,6 +1,7 @@
 package com.example.to_do_list
 
-import android.text.Editable
+import android.graphics.Color
 import java.sql.Date
 
-class Task(val title: Editable?, val color: Color, val description: Editable, val state: State, deadline: Date?)
+class Task ( val id : Int, val state: String, val titre: String , val description: String, val color: Int, val deadline: String) {
+}

@@ -1,12 +1,11 @@
 package com.example.to_do_list
 
 import android.annotation.SuppressLint
-import android.media.Image
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
-import java.lang.Integer.parseInt
 
 class MainActivity : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
@@ -17,11 +16,13 @@ class MainActivity : AppCompatActivity() {
         val goPageClothe = findViewById<ImageButton>(R.id.goPageClothe)
 
         goPageClothe.setOnClickListener{
-            setContentView(R.layout.activity_change_clothe)
+            val intent = Intent(this@MainActivity, ChangeClothesActivity::class.java)
+            startActivity(intent)
         }
 
         addTask.setOnClickListener{
-            setContentView(R.layout.activity_add_task)
+            val intent = Intent(this@MainActivity, AddTaskActivity::class.java)
+            startActivity(intent)
         }
 
     }

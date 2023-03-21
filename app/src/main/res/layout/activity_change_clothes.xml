@@ -33,7 +33,7 @@
             android:textColor="#000000"
             android:textSize="48sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/imageView3"
+            app:layout_constraintBottom_toTopOf="@+id/pelotte"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -49,11 +49,55 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="244dp"
-                android:layout_height="233dp"
-                app:srcCompat="@drawable/dressed_cat" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/pelotte"
+                    android:layout_width="244dp"
+                    android:layout_height="233dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/dressed_cat" />
+
+                <ImageView
+                    android:id="@+id/neck"
+                    android:layout_width="47dp"
+                    android:layout_height="46dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="109dp"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.843"
+                    app:layout_constraintStart_toStartOf="@+id/pelotte"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <ImageView
+                    android:id="@+id/eyes"
+                    android:layout_width="63dp"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="109dp"
+                    android:contentDescription="eyesImageView"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.891"
+                    app:layout_constraintStart_toStartOf="@+id/pelotte"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.08"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </FrameLayout>
     </LinearLayout>
 
@@ -63,16 +107,23 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/imageButton4"
+        <ImageView
+            android:id="@+id/check"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@+id/tableLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3"
+            app:layout_constraintTop_toBottomOf="@+id/pelotte"
             app:srcCompat="@drawable/check"
             tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageView
+            android:id="@+id/reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/croix_rouge" />
     </LinearLayout>
 
     <LinearLayout
@@ -83,15 +134,15 @@
 
         <TextView
             android:id="@+id/mes_items"
-            android:layout_width="120dp"
-            android:layout_height="39dp"
-            android:text="Mes Items"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Items"
             android:textColor="#000000"
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/tableLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton4" />
+            app:layout_constraintTop_toBottomOf="@+id/check" />
     </LinearLayout>
 
     <LinearLayout
@@ -110,7 +161,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton4">
+            app:layout_constraintTop_toBottomOf="@+id/check">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -122,7 +173,7 @@
                     android:id="@+id/bow_tie"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:contentDescription="bow tie"
+                    android:contentDescription="neck"
                     app:layout_constraintBottom_toTopOf="@+id/tableLayout"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -134,7 +185,7 @@
                     android:id="@+id/glasses"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:contentDescription="glasses"
+                    android:contentDescription="head"
                     app:layout_constraintBottom_toTopOf="@+id/tableLayout"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -150,7 +201,7 @@
                     android:id="@+id/tie"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:contentDescription="tie"
+                    android:contentDescription="neck"
                     app:layout_constraintBottom_toTopOf="@+id/tableLayout"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

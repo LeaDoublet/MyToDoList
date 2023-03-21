@@ -16,6 +16,8 @@ class MainActivity : AppCompatActivity() {
         val neckMain = findViewById<ImageView>(R.id.neckMain)
         val goViewModel = findViewById<FrameLayout>(R.id.frameLayout)
 
+        val notificationHelper = NotificationHelper(this)
+        notificationHelper.createNotification("coucou", "avez vous pensé a cette tache")
         goPageClothe.setOnClickListener{
             val intent = Intent(this@MainActivity, ChangeClothesActivity::class.java)
             startActivity(intent)

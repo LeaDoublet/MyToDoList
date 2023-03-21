@@ -37,21 +37,6 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,
         onCreate(db)
     }
 
-    fun lastID(): Int {
-        val db = this.readableDatabase
-        val idMax = "SELECT  MAX(id) FROM $TABLE_CONTACTS"
-        var cursor: Cursor? = null
-        try{
-            cursor = db.rawQuery(idMax, null)
-        }catch (e: SQLiteException) {
-            db.execSQL(idMax)
-            return 1
-        }
-        val idMaxInt = Integer.parseInt(cursor.toString())
-
-        return idMaxInt
-    }
-
 
     //method to insert data
     fun addTask(emp: Task):Long{
@@ -72,9 +57,28 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,
         db.close() // Closing database connection
         return success
     }
+
+    fun Idmax():Int{
+        var idMax = 0
+        val selectQuery = "SELECT  * FROM $TABLE_CONTACTS"
+        val db = this.readableDatabase
+        var cursor: Cursor? = null
+        try{
+            cursor = db.rawQuery(selectQuery, null)
+        }catch (e: SQLiteException) {
+            db.execSQL(selectQuery)
+            return 0
+        }
+        if (cursor.moveToFirst()) {
+            do {
+                idMax = idMax+1
+            } while (cursor.moveToNext())
+        }
+        return idMax+1
+    }
     //method to read data
     @SuppressLint("Range")
-    fun viewEmployee():List<Task>{
+    fun viewTask():List<Task>{
         val empList:ArrayList<Task> = ArrayList<Task>()
         val selectQuery = "SELECT  * FROM $TABLE_CONTACTS"
         val db = this.readableDatabase
@@ -88,12 +92,14 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,
         var Id: Int
         var Titre: String
         var Description: String
+        var state : String
         if (cursor.moveToFirst()) {
             do {
                 Id = cursor.getInt(cursor.getColumnIndex("id"))
                 Titre = cursor.getString(cursor.getColumnIndex("titre"))
                 Description = cursor.getString(cursor.getColumnIndex("description"))
-                val emp= Task(id = Id, titre = Titre, description = Description, deadline ="", color = 0 , state = "")
+                state = cursor.getString(cursor.getColumnIndex("etat"))
+                val emp= Task(id = Id, titre = Titre, description = Description, deadline ="", color = 0 , state = state)
                 empList.add(emp)
             } while (cursor.moveToNext())
         }

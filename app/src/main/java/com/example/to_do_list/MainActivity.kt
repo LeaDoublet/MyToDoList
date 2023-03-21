@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         val goPageClothe = findViewById<ImageButton>(R.id.goPageClothe)
         val neckMain = findViewById<ImageView>(R.id.neckMain)
         println(neckMain.contentDescription)
-        val goViewModel = findViewById<ImageButton>(R.id.imagecat)
+        val goViewModel = findViewById<FrameLayout>(R.id.catMain)
 
         goPageClothe.setOnClickListener{
             val intent = Intent(this@MainActivity, ChangeClothesActivity::class.java)

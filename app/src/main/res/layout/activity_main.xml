@@ -65,12 +65,12 @@
             android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/pelucheMain"
+                android:id="@+id/catMain"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/pelotteMain"
                     android:layout_width="218dp"
                     android:layout_height="157dp"
                     android:layout_gravity="center_horizontal"
@@ -98,9 +98,9 @@
                     android:layout_width="99dp"
                     android:layout_height="55dp"
                     app:layout_constraintBottom_toBottomOf="@+id/neckMain"
-                    app:layout_constraintEnd_toEndOf="@+id/imageView2"
-                    app:layout_constraintStart_toStartOf="@+id/imageView2"
-                    app:layout_constraintTop_toTopOf="@+id/imageView2"
+                    app:layout_constraintEnd_toEndOf="@+id/pelotteMain"
+                    app:layout_constraintStart_toStartOf="@+id/pelotteMain"
+                    app:layout_constraintTop_toTopOf="@+id/pelotteMain"
                     tools:srcCompat="@tools:sample/avatars" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -134,7 +134,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/pelotteMain"
         app:layout_constraintVertical_bias="0.053" />
 
     <ImageButton

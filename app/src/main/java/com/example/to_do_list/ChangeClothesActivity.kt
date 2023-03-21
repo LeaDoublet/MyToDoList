@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TableLayout
@@ -34,10 +35,17 @@ class ChangeClothesActivity : AppCompatActivity() {
             eyes.setImageDrawable(null)
         }
         check.setOnClickListener{
+            val inflater =  LayoutInflater.from(this)
 
-            println("help")
+            val mainLayout = inflater.inflate(R.layout.activity_main,null,false)
 
+            val catMain = mainLayout.findViewById<ImageView>(R.id.pelotteMain)
+            
+            catMain.contentDescription = "Modified"
+            
+            val parentView = catMain.parent as ViewGroup
 
+            parentView.addView(catMain)
         }
 
         for (i in 0 until tableLayout.childCount) {

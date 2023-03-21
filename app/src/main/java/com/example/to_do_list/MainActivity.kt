@@ -3,7 +3,6 @@ package com.example.to_do_list
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.*
 import android.content.Intent
 
@@ -15,8 +14,7 @@ class MainActivity : AppCompatActivity() {
         val addTask = findViewById<ImageButton>(R.id.addTask)
         val goPageClothe = findViewById<ImageButton>(R.id.goPageClothe)
         val neckMain = findViewById<ImageView>(R.id.neckMain)
-        println(neckMain.contentDescription)
-        val goViewModel = findViewById<FrameLayout>(R.id.catMain)
+        val goViewModel = findViewById<FrameLayout>(R.id.frameLayout)
 
         goPageClothe.setOnClickListener{
             val intent = Intent(this@MainActivity, ChangeClothesActivity::class.java)

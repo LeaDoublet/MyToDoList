@@ -2,28 +2,25 @@ package com.example.to_do_list
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.example.to_do_list.databinding.CardCellBinding
 
-class MyListAdapter(private val context: Activity, private val id: Array<String>, private val name: Array<String>, private val email: Array<String>,private val state: Array<String>)
-    : ArrayAdapter<String>(context, R.layout.list_tache, name) {
+class MyListAdapter (private val tasks: List<Task>)
+    : RecyclerView.Adapter<CardViewHolder>(){
 
-    @SuppressLint("MissingInflatedId")
-    override fun getView(position: Int, view: View?, parent: ViewGroup): View {
-        val inflater = context.layoutInflater
-        val rowView = inflater.inflate(R.layout.list_tache, null, true)
-
-        val idText = rowView.findViewById(R.id.textViewId) as TextView
-        val nameText = rowView.findViewById(R.id.textViewTitre) as TextView
-        val emailText = rowView.findViewById(R.id.textViewDescription) as TextView
-        val stateText = rowView.findViewById(R.id.textViewState) as TextView
-
-        idText.text = "Id: ${id[position]}"
-        nameText.text = "Titre: ${name[position]}"
-        emailText.text = "Description: ${email[position]}"
-        stateText.text = "State: ${state[position]}"
-        return rowView
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
+        val from = LayoutInflater.from(parent.context)
+        val binding = CardCellBinding.inflate(from, parent, false)
+        return CardViewHolder(binding)
     }
+
+    override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
+        holder.bindTask(tasks[position])
+    }
+
+    override fun getItemCount(): Int = tasks.size
 }

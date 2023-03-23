@@ -6,7 +6,7 @@
     android:id="@+id/linearLayout">
 
     <TextView
-        android:id="@+id/textViewId"
+        android:id="@+id/textViewId1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Id"
@@ -14,21 +14,21 @@
         tools:visibility="visible" />
 
     <TextView
-        android:id="@+id/textViewState"
+        android:id="@+id/textViewState1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="State"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
 
     <TextView
-        android:id="@+id/textViewTitre"
+        android:id="@+id/textViewTitre1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Name"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
 
     <TextView
-        android:id="@+id/textViewDescription"
+        android:id="@+id/textViewDescription1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Email"

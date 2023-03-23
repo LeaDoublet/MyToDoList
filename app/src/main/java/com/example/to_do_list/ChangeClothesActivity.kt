@@ -1,17 +1,16 @@
 package com.example.to_do_list
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TableLayout
 import android.widget.TableRow
-
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.graphics.drawable.toBitmap
+import java.io.ByteArrayOutputStream
 
 class ChangeClothesActivity : AppCompatActivity() {
 
@@ -35,17 +34,28 @@ class ChangeClothesActivity : AppCompatActivity() {
             eyes.setImageDrawable(null)
         }
         check.setOnClickListener{
-            val inflater =  LayoutInflater.from(this)
 
-            val mainLayout = inflater.inflate(R.layout.activity_main,null,false)
+            val intent = Intent(this, MainActivity::class.java)
+            if (neck.drawable != null){
+                val streamNeck = ByteArrayOutputStream()
+                val bitMapNeck = neck.drawable.toBitmap(neck.drawable.intrinsicWidth,
+                    neck.drawable.intrinsicHeight,
+                    null)
+                bitMapNeck.compress(Bitmap.CompressFormat.PNG, 100, streamNeck)
+                val byteArrayNeck = streamNeck.toByteArray()
+                intent.putExtra("IMAGE_NECK",byteArrayNeck)
+            }
+            if (eyes.drawable != null){
+                val streamEyes = ByteArrayOutputStream()
+                val bitMapEyes = eyes.drawable.toBitmap(eyes.drawable.intrinsicWidth,
+                    eyes.drawable.intrinsicHeight,
+                    null)
+                bitMapEyes.compress(Bitmap.CompressFormat.PNG, 100, streamEyes)
+                val byteArrayEyes = streamEyes.toByteArray()
+                intent.putExtra("IMAGE_EYES",byteArrayEyes)
+            }
 
-            val catMain = mainLayout.findViewById<ImageView>(R.id.pelotteMain)
-            
-            catMain.contentDescription = "Modified"
-            
-            val parentView = catMain.parent as ViewGroup
-
-            parentView.addView(catMain)
+            startActivity(intent)
         }
 
         for (i in 0 until tableLayout.childCount) {
@@ -70,7 +80,7 @@ class ChangeClothesActivity : AppCompatActivity() {
                     neck.visibility = View.VISIBLE
                     neck.setImageDrawable(image.drawable)
                 } else {
-                    println(eyes.contentDescription)
+
                     eyes.visibility = View.VISIBLE
                     eyes.setImageDrawable(image.drawable)
                 }

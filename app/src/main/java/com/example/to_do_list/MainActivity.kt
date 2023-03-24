@@ -35,19 +35,36 @@ class MainActivity : AppCompatActivity() {
             bitMapEye = null
         }
     }
-    fun TaskInCheckBox(listCheckBox: List<CheckBox>, listTask: List<Task>){
+    fun TaskInCheckBox(listCheckBox: List<CheckBox>, listTask: List<Task>): List<List<Int>> {
         var index = 0
+        var listIdTask = kotlin.collections.mutableListOf<Int>()
+        var listIdCheckbox= mutableListOf<Int>()
         for (task in listTask){
             if (listCheckBox.size - 1>= index){
                 listCheckBox[index].text = task.titre
+                listIdTask.add(task.id)
+                listIdCheckbox.add(index)
                 index += 1
             }
         }
+        var listIdEquivalent :List<List<Int>> = listOf(listIdTask,listIdCheckbox)
         if (listCheckBox.size > index){
             for (i in index until listCheckBox.size){
-                listCheckBox[i].visibility = View.GONE
+                listCheckBox[i].visibility = View.INVISIBLE
             }
         }
+        return listIdEquivalent
+    }
+    fun CheckedBox(checkBoxId : Int, comparateur : List<List<Int>>){
+        var index = 0
+        var taskId : Int = 0
+        for (checkBox in comparateur[1]){
+            if (checkBox == checkBoxId){
+                taskId = comparateur[0][index]
+            }
+            index += 1
+        }
+
     }
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,6 +85,7 @@ class MainActivity : AppCompatActivity() {
         val dataBaseHandler = DatabaseHandler(this)
         val listTask = dataBaseHandler.viewTask()
 
+
         val extras = intent.extras
         if (extras?.getInt("CLOTHE") == 1){
             DressUp(extras)
@@ -76,7 +94,15 @@ class MainActivity : AppCompatActivity() {
         neck.setImageBitmap(bitMapNeck)
         eyes.setImageBitmap(bitMapEye)
 
-        TaskInCheckBox(listCheckBox, listTask)
+        var comparateur = TaskInCheckBox(listCheckBox, listTask)
+        for (checkBox in listCheckBox){
+            checkBox.setOnCheckedChangeListener{
+                    buttonView, isChecked ->
+                if (isChecked){
+                    CheckedBox(checkBox.id, comparateur)
+                }
+            }
+        }
 
         val notificationHelper = NotificationHelper(this)
         goPageClothe.setOnClickListener{

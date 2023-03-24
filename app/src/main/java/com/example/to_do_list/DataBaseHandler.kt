@@ -51,6 +51,7 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,
 
         // Inserting Row
         Log.d(contentValues.toString(),"this contenValue")
+        println(contentValues.toString())
         val success = db.insert(TABLE_CONTACTS, null, contentValues)
 
         //2nd argument is String containing nullColumnHack
@@ -58,11 +59,13 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,
         return success
     }
 
+    @SuppressLint("Range")
     fun Idmax():Int{
-        var idMax = 0
+        var idMax = 1
         val selectQuery = "SELECT  * FROM $TABLE_CONTACTS"
         val db = this.readableDatabase
         var cursor: Cursor? = null
+        var Id: Int
         try{
             cursor = db.rawQuery(selectQuery, null)
         }catch (e: SQLiteException) {
@@ -71,10 +74,14 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,
         }
         if (cursor.moveToFirst()) {
             do {
+                Id = cursor.getInt(cursor.getColumnIndex("id"))
+                if (Id > idMax){
+                    idMax = idMax+1
+                }
                 idMax = idMax+1
             } while (cursor.moveToNext())
         }
-        return idMax+1
+        return idMax
     }
     //method to read data
     @SuppressLint("Range")
@@ -123,7 +130,7 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,
         return success
     }
     //method to delete data
-    fun deleteEmployee(emp: Task):Int{
+    fun deleteTask(emp: Task):Int{
         val db = this.writableDatabase
         val contentValues = ContentValues()
         contentValues.put(KEY_ID, emp.id)// EmpModelClass UserId

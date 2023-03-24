@@ -4,13 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.to_do_list.databinding.ListOfTaskBinding
-import javax.sql.RowSet
 
-class ListTaskActivity: AppCompatActivity() {
+class ListTaskActivity: AppCompatActivity(), TaskClickListener {
 
     private lateinit var binding: ListOfTaskBinding
 
@@ -27,14 +24,44 @@ class ListTaskActivity: AppCompatActivity() {
             startActivity(intent)
         }
 
-        val databaseHandler: DatabaseHandler= DatabaseHandler(this)
+        val databaseHandler: DatabaseHandler = DatabaseHandler(this)
         val emp: List<Task> = databaseHandler.viewTask()
+        val listTaskTodo : MutableList<Task> = mutableListOf()
+        val listTaskLATE : MutableList<Task> = mutableListOf()
+        val listTaskFINISH : MutableList<Task> = mutableListOf()
+        if (!emp.isEmpty()){
+            for (task in emp){
+                if(task.state == "TODO"){
+                    listTaskTodo.add(task)
+                }
+                if(task.state == "LATE"){
+                    listTaskLATE.add(task)
+                }
+                if(task.state == "FINISHED"){
+                    listTaskFINISH.add(task)
+                }
+            }
 
-        val mainActivity = this
-        binding.recyclerView.apply {
-            layoutManager = LinearLayoutManager(mainActivity,LinearLayoutManager.HORIZONTAL,false)
-            adapter = MyListAdapter(emp)
+            val mainActivity = this
+            binding.recyclerViewTODO.apply {
+                layoutManager = LinearLayoutManager(mainActivity,LinearLayoutManager.HORIZONTAL,false)
+                adapter = MyListAdapter(listTaskTodo,mainActivity)
+            }
+            binding.recyclerViewLATE.apply {
+                layoutManager = LinearLayoutManager(mainActivity,LinearLayoutManager.HORIZONTAL,false)
+                adapter = MyListAdapter(listTaskLATE,mainActivity)
+            }
+            binding.recyclerViewFINISH.apply {
+                layoutManager = LinearLayoutManager(mainActivity,LinearLayoutManager.HORIZONTAL,false)
+                adapter = MyListAdapter(listTaskFINISH,mainActivity)
+            }
         }
 
-
-}}
+    }
+    override fun onClick(Task : Task)
+    {
+        val intent = Intent(applicationContext, DetailActivity::class.java)
+        intent.putExtra(BOOK_ID_EXTRA, Task.id)
+        startActivity(intent)
+    }
+}

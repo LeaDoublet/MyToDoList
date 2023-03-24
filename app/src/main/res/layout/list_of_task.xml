@@ -48,20 +48,15 @@
 
             </LinearLayout>
 
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_marginTop="20sp"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewLATE"
                 android:orientation="horizontal"
-                tools:ignore="MissingConstraints">
-
-                <ListView
-                    android:id="@+id/listViewLATE"
-                    android:layout_width="wrap_content"
-                    android:layout_height="300dp">
-
-                </ListView>
-            </HorizontalScrollView>
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:reverseLayout="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -81,8 +76,9 @@
                     android:layout_weight="1"
                     app:srcCompat="@drawable/afairechat" />
             </LinearLayout>
+
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView"
+                    android:id="@+id/recyclerViewTODO"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -90,7 +86,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     />
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -112,16 +107,15 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="300dp"
-                android:layout_marginTop="20sp"
-                tools:ignore="MissingConstraints">
-            <ListView
-                android:id="@+id/listViewFINISH"
-                android:layout_width="wrap_content"
-                android:layout_height="350sp" />
-            </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewFINISH"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:reverseLayout="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
 
         </LinearLayout>
     </ScrollView>

@@ -1,7 +1,6 @@
 package com.example.to_do_list
 
 import android.app.DatePickerDialog
-import android.app.TimePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -74,7 +73,6 @@ class AddTaskActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener 
         var datefind = forDate(date)
 
         if(titre.trim()!=""){
-
             val Taski = Task(idMax,todo,titre,description, 40,datefind)
             val status = databaseHandler.addTask(Taski)
 

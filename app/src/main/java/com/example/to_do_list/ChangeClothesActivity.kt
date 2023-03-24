@@ -11,7 +11,6 @@ import android.widget.TableLayout
 import android.widget.TableRow
 
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 
 class ChangeClothesActivity : AppCompatActivity() {
 

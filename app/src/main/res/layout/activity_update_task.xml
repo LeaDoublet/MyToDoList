@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/addtaskbacground"
-    tools:context=".MainActivity">
+    tools:context=".UpdateActivity">
 
     <TableRow
         android:layout_width="382dp"
@@ -33,7 +33,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Nouvelle Tâche" />
+        android:text="Modication Tâche" />
 
     <LinearLayout
         android:layout_width="300dp"
@@ -84,46 +84,46 @@
     </LinearLayout>
 
 
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+
         <LinearLayout
-            android:layout_width="300dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center_horizontal"
-            android:orientation="horizontal">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <Switch
+                android:id="@+id/switchDate"
+                android:layout_width="90dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <Switch
-                    android:id="@+id/switchDate"
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:minHeight="48dp"
-                    android:text="Date limite?" />
-
-                <TextView
-                    android:id="@+id/tv_textTime"
-                    android:layout_width="65dp"
-                    android:layout_height="wrap_content"
-                    android:text="@tools:sample/date/ddmmyy"
-                    android:visibility="invisible" />
-            </LinearLayout>
+                android:minHeight="48dp"
+                android:text="Date limite?" />
 
             <TextView
-                android:id="@+id/text_couleur"
-                android:layout_width="71dp"
+                android:id="@+id/tv_textTime"
+                android:layout_width="65dp"
                 android:layout_height="wrap_content"
-                android:text="couleur" />
-
-            <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/panelle_couleur" />
+                android:text="@tools:sample/date/ddmmyy"
+                android:visibility="invisible" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_couleur"
+            android:layout_width="71dp"
+            android:layout_height="wrap_content"
+            android:text="couleur" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/panelle_couleur" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnSave"

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/background_delete"
+    android:orientation="vertical"
+    tools:context=".DeleteTaskActivity">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="500dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/no_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="140dp"
+            app:srcCompat="@drawable/no_delete" />
+
+        <ImageView
+            android:id="@+id/yes_delete"
+            android:layout_width="160dp"
+            android:layout_height="140dp"
+            app:srcCompat="@drawable/yes_delete" />
+    </LinearLayout>
+</LinearLayout>

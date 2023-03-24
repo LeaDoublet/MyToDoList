@@ -113,7 +113,7 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,
         return empList
     }
     //method to update data
-    fun updateEmployee(emp: Task):Int{
+    fun updateTask(emp: Task):Int{
         val db = this.writableDatabase
         val contentValues = ContentValues()
         contentValues.put(KEY_ID, emp.id)
@@ -129,6 +129,7 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,
         db.close() // Closing database connection
         return success
     }
+
     //method to delete data
     fun deleteTask(emp: Task):Int{
         val db = this.writableDatabase

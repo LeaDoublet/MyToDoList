@@ -29,6 +29,12 @@ class DetailActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        var modifier = findViewById<ImageButton>(R.id.modifier)
+        modifier.setOnClickListener{
+            val intent = Intent(this@DetailActivity, UpdateActivity::class.java)
+            intent.putExtra(BOOK_ID_EXTRA,taskID)
+            startActivity(intent)
+        }
 
         var btnDelete = findViewById<ImageButton>(R.id.suprimer)
         btnDelete.setOnClickListener{

@@ -21,13 +21,14 @@
         app:srcCompat="@drawable/to_do" />
 
     <TableLayout
-        android:layout_gravity="center_horizontal"
+        android:id="@+id/tableaLyout"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="20sp">
 
         <CheckBox
-            android:id="@+id/checkBox"
+            android:id="@+id/TaskMain1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/tache1"
@@ -35,7 +36,7 @@
             android:visibility="visible" />
 
         <CheckBox
-            android:id="@+id/checkBox1"
+            android:id="@+id/TaskMain2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -44,7 +45,7 @@
             android:visibility="visible" />
 
         <CheckBox
-            android:id="@+id/checkBox2"
+            android:id="@+id/TaskMain3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"

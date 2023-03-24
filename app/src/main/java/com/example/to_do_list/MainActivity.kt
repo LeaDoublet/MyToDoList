@@ -1,19 +1,53 @@
 package com.example.to_do_list
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.media.Image
+import android.view.View
 
 class MainActivity : AppCompatActivity() {
     companion object{
         var bitMapNeck : Bitmap? = null
         var bitMapEye : Bitmap? = null
+    }
+    fun DressUp(extras: Bundle?){
+        val byteArrayNeck = extras?.getByteArray("IMAGE_NECK")
+        val byteArrayEyes = extras?.getByteArray("IMAGE_EYES")
+
+
+        val bmpNeck = byteArrayNeck?.let { BitmapFactory.decodeByteArray(byteArrayNeck, 0, it.size) }
+        if (bmpNeck != null){
+            bitMapNeck = bmpNeck
+        }
+        else{
+            bitMapNeck = null
+        }
+
+        val bmpEyes = byteArrayEyes?.let { BitmapFactory.decodeByteArray(byteArrayEyes, 0, it.size) }
+        if (bmpEyes != null){
+            bitMapEye = bmpEyes
+        }
+        else{
+            bitMapEye = null
+        }
+    }
+    fun TaskInCheckBox(listCheckBox: List<CheckBox>, listTask: List<Task>){
+        var index = 0
+        for (task in listTask){
+            if (listCheckBox.size - 1>= index){
+                listCheckBox[index].text = task.titre
+                index += 1
+            }
+        }
+        if (listCheckBox.size > index){
+            for (i in index until listCheckBox.size){
+                listCheckBox[i].visibility = View.GONE
+            }
+        }
     }
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,21 +61,22 @@ class MainActivity : AppCompatActivity() {
         val neck = findViewById<ImageView>(R.id.neckMain)
         val eyes = findViewById<ImageView>(R.id.eyesMain)
 
+        val showedTask1 =  findViewById<CheckBox>(R.id.TaskMain1)
+        val showedTask2 =  findViewById<CheckBox>(R.id.TaskMain2)
+        val showedTask3 =  findViewById<CheckBox>(R.id.TaskMain3)
+        val listCheckBox = listOf<CheckBox>(showedTask1,showedTask2,showedTask3)
+        val dataBaseHandler = DatabaseHandler(this)
+        val listTask = dataBaseHandler.viewTask()
+
         val extras = intent.extras
-        val byteArrayNeck = extras?.getByteArray("IMAGE_NECK")
-        val byteArrayEyes = extras?.getByteArray("IMAGE_EYES")
-
-        val bmpNeck = byteArrayNeck?.let { BitmapFactory.decodeByteArray(byteArrayNeck, 0, it.size) }
-        if (bmpNeck != null){
-            bitMapNeck = bmpNeck
+        if (extras?.getInt("CLOTHE") == 1){
+            DressUp(extras)
         }
 
-        val bmpEyes = byteArrayEyes?.let { BitmapFactory.decodeByteArray(byteArrayEyes, 0, it.size) }
-        if (bmpEyes != null){
-            bitMapEye = bmpEyes
-        }
         neck.setImageBitmap(bitMapNeck)
         eyes.setImageBitmap(bitMapEye)
+
+        TaskInCheckBox(listCheckBox, listTask)
 
         val notificationHelper = NotificationHelper(this)
         goPageClothe.setOnClickListener{

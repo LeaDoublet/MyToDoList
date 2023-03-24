@@ -54,6 +54,8 @@ class ChangeClothesActivity : AppCompatActivity() {
                 val byteArrayEyes = streamEyes.toByteArray()
                 intent.putExtra("IMAGE_EYES",byteArrayEyes)
             }
+            intent.putExtra("CLOTHE",1)
+
 
             startActivity(intent)
         }

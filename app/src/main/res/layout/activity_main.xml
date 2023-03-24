@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/ToDoImage"
         android:layout_width="352dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -95,8 +95,8 @@
 
                 <ImageView
                     android:id="@+id/eyesMain"
-                    android:layout_width="99dp"
-                    android:layout_height="55dp"
+                    android:layout_width="107dp"
+                    android:layout_height="54dp"
                     app:layout_constraintBottom_toBottomOf="@+id/neckMain"
                     app:layout_constraintEnd_toEndOf="@+id/pelotteMain"
                     app:layout_constraintStart_toStartOf="@+id/pelotteMain"

@@ -5,5 +5,5 @@ import java.sql.Date
 
 val BOOK_ID_EXTRA = "bookExtra"
 
-class Task ( val id : Int, val state: String, val titre: String , val description: String, val color: Int, val deadline: String) {
+class Task (val id : Int, var state: String, var titre: String, var description: String, val color: Int, val deadline: String) {
 }

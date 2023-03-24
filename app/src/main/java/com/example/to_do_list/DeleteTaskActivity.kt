@@ -27,6 +27,7 @@ class DeleteTaskActivity : AppCompatActivity() {
 
         btnNo_Delete.setOnClickListener{
             val intent = Intent(this@DeleteTaskActivity, DetailActivity::class.java)
+            intent.putExtra(BOOK_ID_EXTRA, taskID)
             startActivity(intent)
         }
 

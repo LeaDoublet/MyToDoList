@@ -60,13 +60,30 @@ class AddTaskActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener 
         }
         pickDate()
     }
+    fun countDigits(number: Int): Int {
+        var count = 0
+        var n = number
+        while (n != 0) {
+            n /= 10
+            ++count
+        }
+        return count
+    }
+
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        savedDay = dayOfMonth
-        savedMonth = month
         savedYear = year
+        var savedDayString = dayOfMonth.toString()
+        var savedMonthString = month.toString()
+
+        if (countDigits(dayOfMonth) < 2){
+            savedDayString = "0$dayOfMonth"
+        }
+        if (countDigits(month) < 2){
+            savedMonthString = "0$month"
+        }
 
         val tv_textTime = findViewById<TextView>(R.id.tv_textTime)
-        tv_textTime.text = "$savedDay-$savedMonth-$savedYear"
+        tv_textTime.text = "$savedDayString-$savedMonthString-$savedYear"
     }
 
     private fun getDateTimeCalendar(){
@@ -96,10 +113,10 @@ class AddTaskActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener 
         val idMax = databaseHandler.Idmax()
         val todo = "TODO"
         val date = findViewById<TextView>(R.id.tv_textTime)
-        var datefind = forDate(date)
 
         if(titre.trim()!=""){
-            val Taski = Task(idMax,todo,titre,description, 40, datefind as String)
+            println("Date de la notif " + date.text)
+            val Taski = Task(idMax,todo,titre,description, 40, date.text as String)
             val status = databaseHandler.addTask(Taski)
 
             if(status > -1){
@@ -107,6 +124,7 @@ class AddTaskActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener 
                 findViewById<EditText>(R.id.u_titleNewTask).text.clear()
                 findViewById<EditText>(R.id.u_descriptionNewTask).text.clear()
                 findViewById<TextView>(R.id.tv_textTime).text = " "
+                findViewById<Switch>(R.id.switchDate).isChecked = false
             }
         }else{
             Toast.makeText(applicationContext,"Pas de titre !!", Toast.LENGTH_LONG).show()

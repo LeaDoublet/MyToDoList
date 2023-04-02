@@ -100,13 +100,15 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,
         var Titre: String
         var Description: String
         var state : String
+        var deadline : String
         if (cursor.moveToFirst()) {
             do {
                 Id = cursor.getInt(cursor.getColumnIndex("id"))
                 Titre = cursor.getString(cursor.getColumnIndex("titre"))
                 Description = cursor.getString(cursor.getColumnIndex("description"))
                 state = cursor.getString(cursor.getColumnIndex("etat"))
-                val emp= Task(id = Id, titre = Titre, description = Description, deadline ="", color = 0 , state = state)
+                deadline = cursor.getString(cursor.getColumnIndex("date"))
+                val emp= Task(id = Id, titre = Titre, description = Description, deadline =deadline, color = 0 , state = state)
                 empList.add(emp)
             } while (cursor.moveToNext())
         }

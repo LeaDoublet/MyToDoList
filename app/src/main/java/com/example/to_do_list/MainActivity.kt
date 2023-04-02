@@ -9,10 +9,10 @@ import android.graphics.BitmapFactory
 import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
+import androidx.core.app.NotificationCompat
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NotificationCompat
 import com.example.to_do_list.databinding.ActivityMainBinding
 import com.example.to_do_list.databinding.ActivityUpdateTaskBinding
 import java.sql.Time
@@ -116,6 +116,14 @@ class MainActivity : AppCompatActivity(){
                 }
             }
         }
+
+        val notificationHelper = NotificationHelper(this)
+        for (task in listTask){
+            println(listTask.size)
+            println("Test : " + task.deadline)
+            notificationHelper.createNotification(task.titre, task)
+        }
+
 
         goPageClothe.setOnClickListener{
             val intent = Intent(this@MainActivity, ChangeClothesActivity::class.java)

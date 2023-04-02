@@ -2,10 +2,12 @@ package com.example.to_do_list
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -24,10 +26,21 @@ class UpdateActivity : AppCompatActivity(){
         val taskID = intent.getIntExtra(BOOK_ID_EXTRA, -1)
         val task = TaskFromID(taskID,this)
 
+        var textmodifTache = findViewById<TextView>(R.id.updatetache)
+        val fontmodiftache = Typeface.createFromAsset(assets,"police/spacetime-regular.ttf")
+        textmodifTache.typeface = fontmodiftache
+
+        var textTitreModif = findViewById<TextView>(R.id.titlemodif)
+        var textDescriptionModif = findViewById<TextView>(R.id.descriptionmodif)
+        val font = Typeface.createFromAsset(assets,"police/Reikna.ttf")
+        textTitreModif.typeface = font
+        textDescriptionModif.typeface = font
+
         val modifTitre = findViewById<EditText>(R.id.u_titleUpdateTask)
         val modifDes = findViewById<EditText>(R.id.u_descriptionUpdateTask)
 
         var btnRetour = findViewById<Button>(R.id.btnRetourUpdate)
+        btnRetour.setBackgroundColor(getColor(R.color.button))
         btnRetour.setOnClickListener{
             val intent = Intent(this@UpdateActivity, DetailActivity::class.java)
             intent.putExtra(BOOK_ID_EXTRA, taskID)
@@ -35,6 +48,7 @@ class UpdateActivity : AppCompatActivity(){
         }
 
         val modifier = findViewById<Button>(R.id.btnUpdate)
+        modifier.setBackgroundColor(getColor(R.color.button))
         modifier.setOnClickListener{
             val updateTitre = modifTitre.text.toString()
             val updateDes = modifDes.text.toString()

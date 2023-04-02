@@ -1,15 +1,27 @@
 package com.example.to_do_list
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.widget.*
+import android.app.*
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Typeface
+import android.os.Bundle
 import android.view.View
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
+import com.example.to_do_list.databinding.ActivityMainBinding
+import com.example.to_do_list.databinding.ActivityUpdateTaskBinding
+import java.sql.Time
+import java.util.*
 
-class MainActivity : AppCompatActivity() {
+
+class MainActivity : AppCompatActivity(){
+    private lateinit var binding: ActivityMainBinding
+
     companion object{
         var bitMapNeck : Bitmap? = null
         var bitMapEye : Bitmap? = null
@@ -53,7 +65,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val addTask = findViewById<ImageButton>(R.id.addTask)
         val goPageClothe = findViewById<ImageButton>(R.id.goPageClothe)
@@ -68,6 +81,7 @@ class MainActivity : AppCompatActivity() {
         val dataBaseHandler = DatabaseHandler(this)
         val listTask = dataBaseHandler.viewTask()
 
+
         val extras = intent.extras
         if (extras?.getInt("CLOTHE") == 1){
             DressUp(extras)
@@ -78,7 +92,6 @@ class MainActivity : AppCompatActivity() {
 
         TaskInCheckBox(listCheckBox, listTask)
 
-        val notificationHelper = NotificationHelper(this)
         goPageClothe.setOnClickListener{
             val intent = Intent(this@MainActivity, ChangeClothesActivity::class.java)
             startActivity(intent)

@@ -1,11 +1,10 @@
 package com.example.to_do_list
 
-import android.app.Dialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Typeface
 import android.os.Bundle
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -23,7 +22,9 @@ class ListTaskActivity: AppCompatActivity(), TaskClickListener {
         binding = ListOfTaskBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         var btnRetour = findViewById<Button>(R.id.btnRetour)
+        btnRetour.setBackgroundColor(getColor(R.color.button))
         btnRetour.setOnClickListener{
             val intent = Intent(this@ListTaskActivity, MainActivity::class.java)
             startActivity(intent)

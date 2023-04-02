@@ -29,11 +29,12 @@
     </TableRow>
 
     <TextView
-        android:id="@+id/nouvelletache"
-        android:layout_width="100dp"
+        android:id="@+id/updatetache"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Modication Tâche" />
+        android:text="Modification Tache"
+        android:textSize="25dp" />
 
     <LinearLayout
         android:layout_width="300dp"
@@ -42,10 +43,11 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/titlemodif"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
+            android:textSize="30dp"
             android:text="Titre" />
 
         <EditText
@@ -66,10 +68,11 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/description"
+            android:id="@+id/descriptionmodif"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_margin="10dp"
+            android:textSize="30dp"
             android:text="Description" />
 
         <EditText
@@ -85,9 +88,10 @@
 
 
     <LinearLayout
-        android:layout_width="300dp"
-        android:layout_height="100dp"
+        android:layout_width="320dp"
+        android:layout_height="120dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
 
@@ -96,31 +100,19 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <Switch
-                android:id="@+id/switchDate"
-                android:layout_width="90dp"
-                android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:text="Date limite?" />
-
             <TextView
-                android:id="@+id/tv_textTime"
+                android:id="@+id/tv_textTimeUpdate"
                 android:layout_width="65dp"
                 android:layout_height="wrap_content"
                 android:text="@tools:sample/date/ddmmyy"
                 android:visibility="invisible" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/text_couleur"
-            android:layout_width="71dp"
-            android:layout_height="wrap_content"
-            android:text="couleur" />
-
         <ImageView
             android:id="@+id/imageView6"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
             app:srcCompat="@drawable/panelle_couleur" />
     </LinearLayout>

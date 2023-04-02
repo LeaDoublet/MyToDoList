@@ -29,6 +29,7 @@ class ChangeClothesActivity : AppCompatActivity() {
             val intent = Intent(this@ChangeClothesActivity, MainActivity::class.java)
             startActivity(intent)
         }
+        btnRetour.setBackgroundColor(getColor(R.color.button))
         btnReset.setOnClickListener{
             neck.setImageDrawable(null)
             eyes.setImageDrawable(null)

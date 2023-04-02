@@ -12,7 +12,6 @@ class CardViewHolder(
 {
     fun bindTask(Task: Task)
     {
-        cardCellBinding.textViewId.text = Task.id.toString()
         cardCellBinding.textViewTitre.text = Task.titre
 
         cardCellBinding.cardView.setOnClickListener{

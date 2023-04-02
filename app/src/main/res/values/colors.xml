@@ -10,5 +10,7 @@
     <color name="tache1">#d6b5a7</color>
     <color name="tache2">#e5c7bb</color>
     <color name="tache3">#fcd8ca</color>
-    <color name="gray">#9C9494</color>
+    <color name="gray">#B6B6B6</color>
+    <color name="button">#FFB396</color>
+    <color name="green">#4CAF50</color>
 </resources>

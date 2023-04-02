@@ -2,6 +2,7 @@ package com.example.to_do_list
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Typeface
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
@@ -21,9 +22,16 @@ class DetailActivity : AppCompatActivity() {
         binding = TaskDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val font = Typeface.createFromAsset(assets,"police/Reikna.ttf")
+        var textTitre = findViewById<TextView>(R.id.view_titre)
+        textTitre.typeface = font
+
+
         val taskID = intent.getIntExtra(BOOK_ID_EXTRA, -1)
         println("ID Task de Detail " + taskID)
+
         var btnRetour = findViewById<Button>(R.id.retour)
+        btnRetour.setBackgroundColor(getColor(R.color.green))
         btnRetour.setOnClickListener{
             val intent = Intent(this@DetailActivity, ListTaskActivity::class.java)
             startActivity(intent)

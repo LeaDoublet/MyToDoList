@@ -15,6 +15,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginBottom="80dp"
         android:gravity="end"
+        android:layout_marginRight="10dp"
         android:orientation="horizontal">
 
         <ImageButton
@@ -40,10 +41,12 @@
 
     <TextView
         android:id="@+id/view_titre"
-        android:layout_width="wrap_content"
+        android:layout_width="375dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Titre" />
+        android:text="Titre"
+        android:textAlignment="center"
+        android:textSize="45dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -82,6 +85,7 @@
         android:layout_gravity="center"
         android:layout_width="350dp"
         android:layout_height="200dp"
+        android:textSize="15dp"
         android:background="@color/gray"
         android:text="Description" />
 
@@ -89,6 +93,9 @@
         android:id="@+id/retour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="30dp"
         android:text="Retour" />
 
 </LinearLayout>

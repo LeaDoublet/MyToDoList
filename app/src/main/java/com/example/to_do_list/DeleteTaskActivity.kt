@@ -45,4 +45,5 @@ class DeleteTaskActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
 }

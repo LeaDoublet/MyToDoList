@@ -92,4 +92,5 @@ class ChangeClothesActivity : AppCompatActivity() {
 
     }
 
+
 }

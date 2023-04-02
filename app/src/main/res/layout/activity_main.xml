@@ -32,6 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/tache1"
+            android:contentDescription="0"
             android:text="CheckBox"
             android:textSize="25dp"
             android:visibility="visible" />
@@ -42,6 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:background="@color/tache2"
+            android:contentDescription="1"
             android:text="CheckBox"
             android:textSize="25dp"
             android:visibility="visible" />
@@ -52,6 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:background="@color/tache3"
+            android:contentDescription="2"
             android:text="CheckBox"
             android:textSize="25dp"
             android:visibility="visible" />

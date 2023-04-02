@@ -3,26 +3,30 @@ package com.example.to_do_list
 import android.app.*
 import android.content.Context
 import android.content.Context.ALARM_SERVICE
+import android.content.Context.NOTIFICATION_SERVICE
 import android.content.Intent
-import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
-import android.icu.util.LocaleData
 import android.os.Build
-import androidx.core.app.NotificationCompat
-import androidx.core.content.ContextCompat.getSystemService
+import android.os.Build.VERSION_CODES.O
+
+import androidx.core.content.getSystemService
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.util.*
 
 class NotificationHelper(private val context: Context) {
 
-    private val CHANNEL_ID = "MyChannelID"
+
 
     val calendar = Calendar.getInstance()
 
-
     fun createNotification(title : String,task : Task) {
-        if (!task.deadline.isNullOrBlank() ){
+        if (task.deadline.isNotBlank() && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+
+            val channel = NotificationChannel (
+                BroadcastReceiver.CHANNEL_ID,
+                "ToDo",
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
 
             val dateFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy")
             val notifDate = LocalDate.parse(task.deadline, dateFormat)
@@ -31,27 +35,30 @@ class NotificationHelper(private val context: Context) {
             calendar.set(Calendar.MONTH, notifDate.monthValue)
             calendar.set(Calendar.DAY_OF_MONTH, notifDate.dayOfMonth)
 
-            calendar.set(Calendar.HOUR_OF_DAY, 15)
-            calendar.set(Calendar.MINUTE, 42)
+            calendar.set(Calendar.HOUR_OF_DAY, 17)
+            calendar.set(Calendar.MINUTE, 21)
             calendar.set(Calendar.SECOND, 0)
 
             val intent = Intent(context, BroadcastReceiver::class.java)
             intent.putExtra("title", title)
-            intent.putExtra("message", "Cette tâche doit être éffectuer aujourd'hui !")
+            intent.putExtra("message", "Cette tâche doit être effectuer aujourd'hui !")
+            intent.putExtra("TASK_ID", task.id)
 
             val pendingIntent = PendingIntent.getBroadcast(
                 context,
-                0,
+                task.id,
                 intent,
-                PendingIntent.FLAG_UPDATE_CURRENT
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
             )
-            val alarmManager : AlarmManager = context.getSystemService(ALARM_SERVICE) as AlarmManager
+            val alarmManager = context.getSystemService(ALARM_SERVICE) as AlarmManager
             alarmManager.setExact(
                 AlarmManager.RTC_WAKEUP,
                 calendar.timeInMillis,
                 pendingIntent
             )
-            println("Tâche bien ajouté")
+            channel.description = "Utiliser afin de montrer les différentes notifications à l'utilisateurs"
+            val notificationManager = context.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
         }
     }
 }

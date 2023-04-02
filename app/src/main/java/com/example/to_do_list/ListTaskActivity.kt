@@ -74,11 +74,18 @@ class ListTaskActivity: AppCompatActivity(), TaskClickListener {
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = this.layoutInflater
         val dialogView = inflater.inflate(R.layout.popup, null)
-        dialogBuilder.setView(dialogView)
         dialogBuilder.setPositiveButton("Update", DialogInterface.OnClickListener { _, _ ->
-            task.state = "FINISHED"
+            var status : Int? = -5
             val databaseHandler: DatabaseHandler= DatabaseHandler(this)
-            val status = task?.let { it1 -> databaseHandler.updateTask(it1) }
+            if (task.state == "LATE" || task.state == "TODO"){
+                dialogBuilder.setView(dialogView)
+                task.state = "FINISHED"
+            }
+            else{
+                status = databaseHandler.deleteTask(Task(task.id,"","","",0,""))
+            }
+
+            status = task?.let { it1 -> databaseHandler.updateTask(it1) }
                 if (status != null) {
                     if(status > -1){
                         Toast.makeText(applicationContext,"record update", Toast.LENGTH_LONG).show()
@@ -92,5 +99,6 @@ class ListTaskActivity: AppCompatActivity(), TaskClickListener {
         val b = dialogBuilder.create()
         b.show()
     }
+
 }
 

@@ -58,7 +58,6 @@ class DetailActivity : AppCompatActivity() {
         val dateEcrite = findViewById<TextView>(R.id.date_ecrite)
         if(task != null)
         {
-            println(task.titre)
             println("voici la date de la tache" + task.deadline)
             binding.viewTitre.text = task.titre
             binding.textDescription.text = task.description

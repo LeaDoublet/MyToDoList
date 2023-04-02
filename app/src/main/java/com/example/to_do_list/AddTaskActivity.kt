@@ -67,7 +67,6 @@ class AddTaskActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener 
 
         val tv_textTime = findViewById<TextView>(R.id.tv_textTime)
         tv_textTime.text = "$savedDay-$savedMonth-$savedYear"
-        tv_textTime.isVisible = true
     }
 
     private fun getDateTimeCalendar(){
@@ -90,7 +89,7 @@ class AddTaskActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener 
         }
     }
 
-    fun saveRecord(view: View) {
+    fun saveRecord(view : View) {
         val titre = findViewById<EditText>(R.id.u_titleNewTask).text.toString()
         val description = findViewById<EditText>(R.id.u_descriptionNewTask).text.toString()
         val databaseHandler= DatabaseHandler(this)
@@ -100,7 +99,7 @@ class AddTaskActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener 
         var datefind = forDate(date)
 
         if(titre.trim()!=""){
-            val Taski = Task(idMax,todo,titre,description, 40,datefind)
+            val Taski = Task(idMax,todo,titre,description, 40, datefind as String)
             val status = databaseHandler.addTask(Taski)
 
             if(status > -1){
@@ -114,9 +113,9 @@ class AddTaskActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener 
         }
     }
 
-    private fun forDate(date : TextView) : String{
-        return if (date.text !=""){
-            date.toString()
+    private fun forDate(date : TextView) : CharSequence? {
+        return if (date.text != " "){
+            date.text
         }else{
             "false"
         }

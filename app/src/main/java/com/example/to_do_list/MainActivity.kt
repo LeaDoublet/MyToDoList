@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity(){
         var listIdTask = kotlin.collections.mutableListOf<Int>()
         var listIdCheckbox= mutableListOf<Int>()
         for (task in listTask){
-            if (listCheckBox.size - 1>= index){
+            if (listCheckBox.size - 1>= index && task.state == "TODO" || task.state =="LATE"){
                 listCheckBox[index].text = task.titre
                 listIdTask.add(task.id)
                 listIdCheckbox.add(index)
@@ -119,8 +119,7 @@ class MainActivity : AppCompatActivity(){
 
         val notificationHelper = NotificationHelper(this)
         for (task in listTask){
-            println(listTask.size)
-            println("Test : " + task.deadline)
+
             notificationHelper.createNotification(task.titre, task)
         }
 

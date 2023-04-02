@@ -22,9 +22,7 @@ class NotificationHelper(private val context: Context) {
 
 
     fun createNotification(title : String,task : Task) {
-        var barrage = false
-        if (task.deadline != "false" && task.deadline != "" && !barrage ){
-
+        if (!task.deadline.isNullOrBlank() ){
 
             val dateFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy")
             val notifDate = LocalDate.parse(task.deadline, dateFormat)

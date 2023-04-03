@@ -69,7 +69,7 @@ class ListTaskActivity: AppCompatActivity(), TaskClickListener {
         startActivity(intent)
     }
 
-    override fun finishTask(task: Task) {
+    override fun FinishTask(task: Task) {
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = this.layoutInflater
         val dialogView = inflater.inflate(R.layout.popup, null)

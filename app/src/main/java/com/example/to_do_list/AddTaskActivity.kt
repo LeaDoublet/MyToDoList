@@ -5,6 +5,7 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import java.time.LocalTime
@@ -93,7 +94,7 @@ class AddTaskActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener 
         }
     }
 
-    fun saveRecord() {
+    fun saveRecord(View : View) {
         val titre = findViewById<EditText>(R.id.u_titleNewTask).text.toString()
         val description = findViewById<EditText>(R.id.u_descriptionNewTask).text.toString()
         val databaseHandler= DatabaseHandler(this)

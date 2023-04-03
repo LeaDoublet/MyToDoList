@@ -19,7 +19,7 @@ class CardViewHolder(
 
         cardCellBinding.checkBoxFINISH.setOnCheckedChangeListener{_, isChecked ->
             if (isChecked){
-                clickListener.finishTask(Task)
+                clickListener.FinishTask(Task)
             }
             Log.v(
                 "checkBoxFinish State=",

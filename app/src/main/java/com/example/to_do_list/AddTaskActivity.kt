@@ -120,7 +120,7 @@ class AddTaskActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener 
             val status = databaseHandler.addTask(Taski)
 
             if(status > -1){
-                Toast.makeText(applicationContext,"record save", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext,"Tâche ajouté", Toast.LENGTH_LONG).show()
                 findViewById<EditText>(R.id.u_titleNewTask).text.clear()
                 findViewById<EditText>(R.id.u_descriptionNewTask).text.clear()
                 findViewById<TextView>(R.id.tv_textTime).text = " "
@@ -137,5 +137,12 @@ class AddTaskActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener 
         }else{
             "false"
         }
+    }
+    @Deprecated("Deprecated in Java",
+        ReplaceWith("super.onBackPressed()", "androidx.appcompat.app.AppCompatActivity")
+    )
+    override fun onBackPressed() {
+        val intent = Intent(this@AddTaskActivity, MainActivity::class.java)
+        startActivity(intent)
     }
 }

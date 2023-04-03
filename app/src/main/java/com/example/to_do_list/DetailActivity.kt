@@ -33,26 +33,21 @@ class DetailActivity : AppCompatActivity() {
         var btnRetour = findViewById<Button>(R.id.retour)
         btnRetour.setBackgroundColor(getColor(R.color.green))
         btnRetour.setOnClickListener{
-            val intent = Intent(this@DetailActivity, ListTaskActivity::class.java)
-            startActivity(intent)
+            move(null,ListTaskActivity::class.java)
         }
 
         var modifier = findViewById<ImageButton>(R.id.modifier)
         modifier.setOnClickListener{
-            val intent = Intent(this@DetailActivity, UpdateActivity::class.java)
-            intent.putExtra(BOOK_ID_EXTRA,taskID)
-            startActivity(intent)
+            move(taskID,UpdateActivity::class.java)
         }
 
         var btnDelete = findViewById<ImageButton>(R.id.suprimer)
         btnDelete.setOnClickListener{
-            val intent = Intent(this@DetailActivity, DeleteTaskActivity::class.java)
-            intent.putExtra(BOOK_ID_EXTRA,taskID)
-            startActivity(intent)
+            move(taskID,DeleteTaskActivity::class.java)
         }
 
 
-        val task = TaskFromID(taskID,this)
+        val task = taskFromID(taskID,this)
 
         val calendrier = findViewById<ImageView>(R.id.calendrier)
         val dateEcrite = findViewById<TextView>(R.id.date_ecrite)
@@ -69,10 +64,25 @@ class DetailActivity : AppCompatActivity() {
             }
         }
     }
+    private fun move(taskId : Int?, destination : Class<*>){
+        val intent = Intent(this@DetailActivity, destination)
+        if (taskId != null){
+            intent.putExtra(BOOK_ID_EXTRA, taskId)
+        }
+        startActivity(intent)
+    }
+
+    @Deprecated("Deprecated in Java",
+        ReplaceWith("super.onBackPressed()", "androidx.appcompat.app.AppCompatActivity")
+    )
+    override fun onBackPressed() {
+        super.onBackPressed()
+        move(null,ListTaskActivity::class.java)
+    }
 
 
 }
-    fun TaskFromID(taskID: Int,context: Context): Task? {
+    fun taskFromID(taskID: Int, context: Context): Task? {
     val databaseHandler: DatabaseHandler = DatabaseHandler(context)
     val emp: List<Task> = databaseHandler.viewTask()
     for (e in emp) {

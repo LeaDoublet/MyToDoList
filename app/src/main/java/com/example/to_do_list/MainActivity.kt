@@ -129,18 +129,12 @@ class MainActivity : AppCompatActivity(){
         if (extras?.getInt("CLOTHE") == 1){
             DressUp(extras)
         }
-        val handler = Handler(Looper.getMainLooper())
-        handler.postDelayed(object : Runnable {
-            override fun run() {
-                for (task in listTask) {
-                    if (task.deadline.isNotBlank()){
-                        SetTaskLate(task)
-                    }
-                }
-                handler.postDelayed(this, 2000)
+        for (task in listTask) {
+            if (task.deadline.isNotBlank() && task.state == "TODO"){
+                println("problem " + task.titre)
+                SetTaskLate(task)
             }
-        }, 10000)
-
+        }
         neck.setImageBitmap(bitMapNeck)
         eyes.setImageBitmap(bitMapEye)
 
@@ -161,30 +155,31 @@ class MainActivity : AppCompatActivity(){
             }
         }
 
-
         goPageClothe.setOnClickListener{
-            val intent = Intent(this@MainActivity, ChangeClothesActivity::class.java)
-            startActivity(intent)
+            move(ChangeClothesActivity::class.java)
         }
 
         addTask.setOnClickListener{
-            val intent = Intent(this@MainActivity, AddTaskActivity::class.java)
-            startActivity(intent)
+            move(AddTaskActivity::class.java)
         }
 
         goViewModel.setOnClickListener{
-            val intent = Intent(this@MainActivity, ListTaskActivity::class.java)
-            startActivity(intent)
+            move(ListTaskActivity::class.java)
         }
 
     }
-    @Deprecated("Deprecated in Java", ReplaceWith("finish()"))
+    private fun move(destination : Class<*>){
+        val intent = Intent(this, destination)
+        startActivity(intent)
+    }
+    @Deprecated("Deprecated in Java",
+        ReplaceWith("super.onBackPressed()", "androidx.appcompat.app.AppCompatActivity")
+    )
     override fun onBackPressed() {
-        finish()
-//        val intent = Intent(Intent.ACTION_MAIN)
-//        intent.addCategory(Intent.CATEGORY_HOME)
-//        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-//        startActivity(intent)
+        val intent = Intent(Intent.ACTION_MAIN)
+        intent.addCategory(Intent.CATEGORY_HOME)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
     }
 
 }

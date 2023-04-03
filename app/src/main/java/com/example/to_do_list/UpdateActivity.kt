@@ -1,21 +1,21 @@
 package com.example.to_do_list
 
-import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.to_do_list.databinding.ActivityUpdateTaskBinding
 
 class UpdateActivity : AppCompatActivity(){
 
     private lateinit var binding: ActivityUpdateTaskBinding
+    companion object{
+        var taskIdentifer : Int = 0
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +24,8 @@ class UpdateActivity : AppCompatActivity(){
         setContentView(binding.root)
 
         val taskID = intent.getIntExtra(BOOK_ID_EXTRA, -1)
-        val task = TaskFromID(taskID,this)
+        taskIdentifer = taskID
+        val task = taskFromID(taskID,this)
 
         var textmodifTache = findViewById<TextView>(R.id.updatetache)
         val fontmodiftache = Typeface.createFromAsset(assets,"police/spacetime-regular.ttf")
@@ -42,9 +43,7 @@ class UpdateActivity : AppCompatActivity(){
         var btnRetour = findViewById<Button>(R.id.btnRetourUpdate)
         btnRetour.setBackgroundColor(getColor(R.color.button))
         btnRetour.setOnClickListener{
-            val intent = Intent(this@UpdateActivity, DetailActivity::class.java)
-            intent.putExtra(BOOK_ID_EXTRA, taskID)
-            startActivity(intent)
+            retour()
         }
 
         val modifier = findViewById<Button>(R.id.btnUpdate)
@@ -53,7 +52,7 @@ class UpdateActivity : AppCompatActivity(){
             val updateTitre = modifTitre.text.toString()
             val updateDes = modifDes.text.toString()
             val databaseHandler: DatabaseHandler= DatabaseHandler(this)
-            if(updateTitre.trim()!="" && updateDes.trim()!=""){
+            if(updateTitre.trim()!=""){
                 if (task != null) {
                     task.titre = updateTitre
                     task.description = updateDes
@@ -67,11 +66,24 @@ class UpdateActivity : AppCompatActivity(){
                     }
                 }
             }else{
-                Toast.makeText(applicationContext,"ca fonctinne pas ",Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext,"Veuillez remplir un titre valide",Toast.LENGTH_LONG).show()
             }
         }
 
 
+    }
+    fun retour(){
+        val intent = Intent(this@UpdateActivity, DetailActivity::class.java)
+        intent.putExtra(BOOK_ID_EXTRA, taskIdentifer)
+        startActivity(intent)
+    }
+
+    @Deprecated("Deprecated in Java",
+        ReplaceWith("super.onBackPressed()", "androidx.appcompat.app.AppCompatActivity")
+    )
+    override fun onBackPressed() {
+        super.onBackPressed()
+        retour()
     }
 
 }

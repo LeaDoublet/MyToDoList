@@ -23,12 +23,10 @@ class DeleteTaskActivity : AppCompatActivity() {
         val databaseHandler: DatabaseHandler = DatabaseHandler(this)
         val taskID = intent.getIntExtra(BOOK_ID_EXTRA, -1)
         println("Test de verif " + taskID)
-        val task = TaskFromID(taskID,this)
+        val task = taskFromID(taskID,this)
 
         btnNo_Delete.setOnClickListener{
-            val intent = Intent(this@DeleteTaskActivity, DetailActivity::class.java)
-            intent.putExtra(BOOK_ID_EXTRA, taskID)
-            startActivity(intent)
+            move(taskID,DetailActivity::class.java)
         }
 
         btnYes_Delete.setOnClickListener{
@@ -36,14 +34,27 @@ class DeleteTaskActivity : AppCompatActivity() {
             {
                 val status = databaseHandler.deleteTask(Task(task.id,"","","",0,""))
                 if(status > -1){
-                    Toast.makeText(applicationContext,"record deleted", Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext,"Tâche supprimé", Toast.LENGTH_LONG).show()
                 }
             }else{
-                Toast.makeText(applicationContext,"ca a pas fonctionner!!!! ", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext,"Erreur", Toast.LENGTH_LONG).show()
             }
-            val intent = Intent(this@DeleteTaskActivity, ListTaskActivity::class.java)
-            startActivity(intent)
+           move(null,ListTaskActivity::class.java)
         }
+    }
+    private fun move(taskId : Int?, destination : Class<*>){
+        val intent = Intent(this, destination)
+        if (taskId != null){
+            intent.putExtra(BOOK_ID_EXTRA, taskId)
+        }
+        startActivity(intent)
+    }
+    @Deprecated("Deprecated in Java",
+        ReplaceWith("super.onBackPressed()", "androidx.appcompat.app.AppCompatActivity")
+    )
+    override fun onBackPressed() {
+        super.onBackPressed()
+        move(null,ListTaskActivity::class.java)
     }
 
 }

@@ -1,6 +1,5 @@
 package com.example.to_do_list
 
-import android.app.DatePickerDialog
 import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import com.example.to_do_list.databinding.CardCellBinding
@@ -18,9 +17,9 @@ class CardViewHolder(
             clickListener.onClick(Task)
         }
 
-        cardCellBinding.checkBoxFINISH.setOnCheckedChangeListener{buttonView, isChecked ->
+        cardCellBinding.checkBoxFINISH.setOnCheckedChangeListener{_, isChecked ->
             if (isChecked){
-                clickListener.FinishTask(Task)
+                clickListener.finishTask(Task)
             }
             Log.v(
                 "checkBoxFinish State=",

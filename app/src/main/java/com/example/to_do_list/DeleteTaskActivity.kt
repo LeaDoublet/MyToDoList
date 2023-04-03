@@ -17,19 +17,19 @@ class DeleteTaskActivity : AppCompatActivity() {
         binding = ActivityDeleteTaskBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val btnYes_Delete = findViewById<ImageView>(R.id.yes_delete)
-        val btnNo_Delete = findViewById<ImageView>(R.id.no_delete)
+        val btnYesDelete = findViewById<ImageView>(R.id.yes_delete)
+        val btnNoDelete = findViewById<ImageView>(R.id.no_delete)
 
-        val databaseHandler: DatabaseHandler = DatabaseHandler(this)
+        val databaseHandler = DatabaseHandler(this)
         val taskID = intent.getIntExtra(BOOK_ID_EXTRA, -1)
         println("Test de verif " + taskID)
         val task = taskFromID(taskID,this)
 
-        btnNo_Delete.setOnClickListener{
+        btnNoDelete.setOnClickListener{
             move(taskID,DetailActivity::class.java)
         }
 
-        btnYes_Delete.setOnClickListener{
+        btnYesDelete.setOnClickListener{
             if(task != null)
             {
                 val status = databaseHandler.deleteTask(Task(task.id,"","","",0,""))
@@ -53,7 +53,6 @@ class DeleteTaskActivity : AppCompatActivity() {
         ReplaceWith("super.onBackPressed()", "androidx.appcompat.app.AppCompatActivity")
     )
     override fun onBackPressed() {
-        super.onBackPressed()
         move(null,ListTaskActivity::class.java)
     }
 

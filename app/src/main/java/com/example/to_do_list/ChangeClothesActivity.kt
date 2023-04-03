@@ -17,14 +17,14 @@ class ChangeClothesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_change_clothes)
-        var btnReset = findViewById<ImageView>(R.id.reset)
-        var check = findViewById<ImageView>(R.id.check)
+        val btnReset = findViewById<ImageView>(R.id.reset)
+        val check = findViewById<ImageView>(R.id.check)
         btnReset.layoutParams = check.layoutParams
-        var neck = findViewById<ImageView>(R.id.neck)
-        var eyes = findViewById<ImageView>(R.id.eyes)
-        var list_images = mutableListOf<ImageView>()
+        val neck = findViewById<ImageView>(R.id.neck)
+        val eyes = findViewById<ImageView>(R.id.eyes)
+        val listImages = mutableListOf<ImageView>()
         val tableLayout = findViewById<TableLayout>(R.id.tableLayout)
-        var btnRetour = findViewById<Button>(R.id.btnBack)
+        val btnRetour = findViewById<Button>(R.id.btnBack)
         btnRetour.setOnClickListener{
             val intent = Intent(this@ChangeClothesActivity, MainActivity::class.java)
             startActivity(intent)
@@ -65,17 +65,17 @@ class ChangeClothesActivity : AppCompatActivity() {
             val view = tableLayout.getChildAt(i)
 
             if (view is ImageView) {
-                list_images.add(view)
+                listImages.add(view)
             } else if (view is TableRow) {
                 for (j in 0 until view.childCount) {
                     val childView = view.getChildAt(j)
                     if (childView is ImageView) {
-                        list_images.add(childView)
+                        listImages.add(childView)
                     }
                 }
             }
         }
-        for (image in list_images) {
+        for (image in listImages) {
 
             image.setOnClickListener {
                 if (image.contentDescription == "neck") {

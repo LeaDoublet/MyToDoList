@@ -23,25 +23,25 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val font = Typeface.createFromAsset(assets,"police/Reikna.ttf")
-        var textTitre = findViewById<TextView>(R.id.view_titre)
+        val textTitre = findViewById<TextView>(R.id.view_titre)
         textTitre.typeface = font
 
 
         val taskID = intent.getIntExtra(BOOK_ID_EXTRA, -1)
         println("ID Task de Detail " + taskID)
 
-        var btnRetour = findViewById<Button>(R.id.retour)
+        val btnRetour = findViewById<Button>(R.id.retour)
         btnRetour.setBackgroundColor(getColor(R.color.green))
         btnRetour.setOnClickListener{
             move(null,ListTaskActivity::class.java)
         }
 
-        var modifier = findViewById<ImageButton>(R.id.modifier)
+        val modifier = findViewById<ImageButton>(R.id.modifier)
         modifier.setOnClickListener{
             move(taskID,UpdateActivity::class.java)
         }
 
-        var btnDelete = findViewById<ImageButton>(R.id.suprimer)
+        val btnDelete = findViewById<ImageButton>(R.id.suprimer)
         btnDelete.setOnClickListener{
             move(taskID,DeleteTaskActivity::class.java)
         }
@@ -76,14 +76,13 @@ class DetailActivity : AppCompatActivity() {
         ReplaceWith("super.onBackPressed()", "androidx.appcompat.app.AppCompatActivity")
     )
     override fun onBackPressed() {
-        super.onBackPressed()
         move(null,ListTaskActivity::class.java)
     }
 
 
 }
     fun taskFromID(taskID: Int, context: Context): Task? {
-    val databaseHandler: DatabaseHandler = DatabaseHandler(context)
+    val databaseHandler = DatabaseHandler(context)
     val emp: List<Task> = databaseHandler.viewTask()
     for (e in emp) {
         if (e.id == taskID)

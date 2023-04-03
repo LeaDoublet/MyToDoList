@@ -27,12 +27,12 @@ class UpdateActivity : AppCompatActivity(){
         taskIdentifer = taskID
         val task = taskFromID(taskID,this)
 
-        var textmodifTache = findViewById<TextView>(R.id.updatetache)
+        val textmodifTache = findViewById<TextView>(R.id.updatetache)
         val fontmodiftache = Typeface.createFromAsset(assets,"police/spacetime-regular.ttf")
         textmodifTache.typeface = fontmodiftache
 
-        var textTitreModif = findViewById<TextView>(R.id.titlemodif)
-        var textDescriptionModif = findViewById<TextView>(R.id.descriptionmodif)
+        val textTitreModif = findViewById<TextView>(R.id.titlemodif)
+        val textDescriptionModif = findViewById<TextView>(R.id.descriptionmodif)
         val font = Typeface.createFromAsset(assets,"police/Reikna.ttf")
         textTitreModif.typeface = font
         textDescriptionModif.typeface = font
@@ -40,7 +40,7 @@ class UpdateActivity : AppCompatActivity(){
         val modifTitre = findViewById<EditText>(R.id.u_titleUpdateTask)
         val modifDes = findViewById<EditText>(R.id.u_descriptionUpdateTask)
 
-        var btnRetour = findViewById<Button>(R.id.btnRetourUpdate)
+        val btnRetour = findViewById<Button>(R.id.btnRetourUpdate)
         btnRetour.setBackgroundColor(getColor(R.color.button))
         btnRetour.setOnClickListener{
             retour()
@@ -51,7 +51,7 @@ class UpdateActivity : AppCompatActivity(){
         modifier.setOnClickListener{
             val updateTitre = modifTitre.text.toString()
             val updateDes = modifDes.text.toString()
-            val databaseHandler: DatabaseHandler= DatabaseHandler(this)
+            val databaseHandler = DatabaseHandler(this)
             if(updateTitre.trim()!=""){
                 if (task != null) {
                     task.titre = updateTitre
@@ -72,7 +72,7 @@ class UpdateActivity : AppCompatActivity(){
 
 
     }
-    fun retour(){
+    private fun retour(){
         val intent = Intent(this@UpdateActivity, DetailActivity::class.java)
         intent.putExtra(BOOK_ID_EXTRA, taskIdentifer)
         startActivity(intent)
@@ -82,7 +82,6 @@ class UpdateActivity : AppCompatActivity(){
         ReplaceWith("super.onBackPressed()", "androidx.appcompat.app.AppCompatActivity")
     )
     override fun onBackPressed() {
-        super.onBackPressed()
         retour()
     }
 

@@ -21,7 +21,6 @@ class BroadcastReceiver : BroadcastReceiver() {
             .setContentTitle(title)
             .setContentText(message)
             .build()
-        println(title + " " + message)
         notificationManager.notify(1, builder)
 
         val intent = Intent(context, MainActivity::class.java)

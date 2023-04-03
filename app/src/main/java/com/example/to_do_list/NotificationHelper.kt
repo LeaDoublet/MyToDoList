@@ -6,10 +6,6 @@ import android.content.Context.ALARM_SERVICE
 import android.content.Context.NOTIFICATION_SERVICE
 import android.content.Intent
 import android.icu.util.Calendar
-import android.os.Build
-import android.os.Build.VERSION_CODES.O
-
-import androidx.core.content.getSystemService
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -17,10 +13,10 @@ class NotificationHelper(private val context: Context) {
 
 
 
-    val calendar = Calendar.getInstance()
+    private val calendar: Calendar = Calendar.getInstance()
 
     fun createNotification(title : String,task : Task) {
-        if (task.deadline.isNotBlank() && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+        if (task.deadline.isNotBlank()){
 
             val channel = NotificationChannel (
                 BroadcastReceiver.CHANNEL_ID,
